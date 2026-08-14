@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>우리 아이 맞춤 사료 찾기 | 개밥파는고양이 수원고등점</title>
+  <meta name="description" content="우리 아이 연령, 체급, 건강 상태에 딱 맞는 사료를 5단계로 찾아드립니다. 개밥파는고양이 수원고등점 전문 큐레이션." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pr: #FF6B2B; --pr-d: #E55520; --pr-l: #FF8E55;
+      --ac: #FFB347; --ac2: #FFF0E6; --sf: #FFFFFF; --bg: #FFF8F4;
+      --tm: #1A1A2E; --ts: #6B7280; --th: #9CA3AF; --br: #FFE0CC;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans KR','Apple SD Gothic Neo',sans-serif; background: var(--bg); min-height: 100vh; display: flex; justify-content: center; }
+    .wrap { width: 100%; max-width: 480px; min-height: 100vh; background: var(--sf); box-shadow: 0 0 60px rgba(255,107,43,.10); display: flex; flex-direction: column; }
+    /* HEADER */
+    .hdr { background: linear-gradient(135deg,#FF6B2B 0%,#FF4500 100%); padding: 32px 24px 28px; text-align: center; position: relative; overflow: hidden; }
+    .hdr::before { content:''; position:absolute; top:-40px; right:-40px; width:160px; height:160px; border-radius:50%; background:rgba(255,255,255,.08); }
+    .hdr::after { content:''; position:absolute; bottom:-60px; left:-30px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,.05); }
+    .hdr-em { font-size:3rem; display:block; margin-bottom:8px; filter:drop-shadow(0 4px 8px rgba(0,0,0,.2)); }
+    .hdr h1 { font-size:1.4rem; font-weight:900; color:#fff; letter-spacing:-.5px; position:relative; z-index:1; }
+    .hdr p { font-size:.82rem; color:rgba(255,255,255,.80); margin-top:6px; position:relative; z-index:1; }
+    /* PROGRESS */
+    .pw { padding:16px 24px 0; }
+    .pl { display:flex; justify-content:space-between; font-size:.75rem; color:var(--th); margin-bottom:8px; font-weight:500; }
+    .pt { height:8px; background:#FFE8DB; border-radius:99px; overflow:hidden; }
+    .pf { height:100%; background:linear-gradient(90deg,#FF6B2B,#FFB347); border-radius:99px; transition:width .4s cubic-bezier(.4,0,.2,1); width:0%; }
+    .dots { display:flex; justify-content:center; gap:8px; margin-top:12px; }
+    .dot { width:8px; height:8px; border-radius:50%; background:#FFD9C7; transition:all .3s ease; }
+    .dot.active { background:#FF6B2B; transform:scale(1.2); }
+    .dot.done { background:#E55520; }
+    /* CONTENT */
+    .cont { padding:24px 20px 32px; flex-grow:1; }
+    /* QUESTION */
+    .qh { text-align:center; margin-bottom:24px; }
+    .qb { display:inline-block; background:linear-gradient(135deg,#FF6B2B,#FFB347); color:white; font-size:.7rem; font-weight:700; padding:4px 12px; border-radius:99px; margin-bottom:12px; letter-spacing:1px; }
+    .qt { font-size:1.3rem; font-weight:900; color:var(--tm); line-height:1.4; letter-spacing:-.5px; }
+    .qs { font-size:.82rem; color:var(--ts); margin-top:6px; }
+    /* OPTIONS */
+    .og { display:flex; flex-direction:column; gap:12px; }
+    .og.tc { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .ob { background:var(--sf); border:2px solid var(--br); border-radius:12px; padding:16px 18px; font-size:1rem; font-weight:700; color:var(--tm); cursor:pointer; transition:all .22s; text-align:left; display:flex; align-items:center; gap:12px; font-family:inherit; }
+    .ob:hover { border-color:#FF6B2B; transform:translateY(-2px); box-shadow:0 8px 24px rgba(255,107,43,.18); background:#FFF0E6; }
+    .ob:active { transform:scale(.98); }
+    .og.tc .ob { flex-direction:column; align-items:center; text-align:center; gap:8px; padding:18px 12px; }
+    .og.tc .oi { font-size:2rem; }
+    .og.tc .oa { display:none; }
+    .oi { font-size:1.5rem; flex-shrink:0; }
+    .ot { flex-grow:1; }
+    .ol { display:block; font-size:1rem; font-weight:700; }
+    .oh { display:block; font-size:.75rem; font-weight:400; color:#6B7280; margin-top:2px; }
+    .oa { color:#9CA3AF; font-size:1.1rem; }
+    /* RESULTS */
+    .rh { text-align:center; margin-bottom:20px; }
+    .rem { font-size:3rem; display:block; margin-bottom:10px; }
+    .rt { font-size:1.4rem; font-weight:900; color:var(--tm); letter-spacing:-.5px; }
+    .rs { font-size:.85rem; color:var(--ts); margin-top:6px; line-height:1.5; }
+    .rtg { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:12px; }
+    .rtag { background:#FFF0E6; color:#E55520; font-size:.72rem; font-weight:700; padding:4px 10px; border-radius:99px; border:1px solid #FFE0CC; }
+    .pl2 { display:flex; flex-direction:column; gap:16px; }
+    .pc { background:linear-gradient(135deg,#FFFAF7 0%,#FFF5EE 100%); border:1.5px solid #FFE0CC; border-radius:20px; padding:20px; position:relative; overflow:hidden; transition:transform .2s,box-shadow .2s; animation:fu .4s ease both; }
+    .pc:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(255,107,43,.18); }
+    .pc:nth-child(1){ animation-delay:.05s; }
+    .pc:nth-child(2){ animation-delay:.15s; }
+    .pc:nth-child(3){ animation-delay:.25s; }
+    @keyframes fu { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .prk { position:absolute; top:16px; right:16px; font-size:1.5rem; }
+    .pb { font-size:.72rem; font-weight:700; color:#FF6B2B; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+    .pn { font-size:1.05rem; font-weight:900; color:var(--tm); letter-spacing:-.3px; line-height:1.3; margin-bottom:8px; padding-right:44px; }
+    .pbg { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+    .badge { font-size:.68rem; font-weight:700; padding:3px 8px; border-radius:6px; }
+    .ba { background:#EDE9FE; color:#7C3AED; }
+    .bh { background:#D1FAE5; color:#065F46; }
+    .bd { background:#FEF3C7; color:#92400E; }
+    .bt { background:#DBEAFE; color:#1E40AF; }
+    .bs { background:#FCE7F3; color:#9D174D; }
+    .pdesc { font-size:.85rem; color:#6B7280; line-height:1.6; border-top:1px solid #FFE0CC; padding-top:10px; margin-top:6px; }
+    .nr { text-align:center; padding:32px 20px; background:#FFF0E6; border-radius:20px; border:1.5px dashed #FFE0CC; }
+    .nre { font-size:3rem; display:block; margin-bottom:12px; }
+    .nr p { font-size:.9rem; color:#6B7280; line-height:1.6; }
+    .acts { margin-top:24px; }
+    .rbtn { background:linear-gradient(135deg,#FF6B2B,#E55520); color:white; border:none; padding:16px; width:100%; border-radius:12px; font-size:1rem; font-weight:700; cursor:pointer; font-family:inherit; display:flex; align-items:center; justify-content:center; gap:8px; transition:all .2s; box-shadow:0 4px 16px rgba(255,107,43,.35); }
+    .rbtn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(255,107,43,.4); }
+    .sn { text-align:center; font-size:.78rem; color:#9CA3AF; padding:12px 20px 20px; line-height:1.5; }
+    .sn strong { color:#FF6B2B; }
+    .sf { animation:sf .3s ease; }
+    @keyframes sf { from{opacity:0;transform:translateX(10px)} to{opacity:1;transform:translateX(0)} }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hdr">
+    <span class="hdr-em">🐾</span>
+    <h1>우리 아이 맞춤 사료 찾기</h1>
+    <p>개밥파는고양이 수원고등점 전문 큐레이션</p>
+  </div>
+  <div class="pw">
+    <div class="pl"><span id="sl">시작</span><span id="sc">0 / 5</span></div>
+    <div class="pt"><div class="pf" id="pf"></div></div>
+    <div class="dots" id="dots"></div>
+  </div>
+  <div class="cont" id="mc"></div>
+  <div class="sn" id="sn">더 자세한 상담은 <strong>개밥파는고양이 수원고등점</strong>을 방문해 주세요 🐾</div>
+</div>
+<script>
+const P=[
+  {n:"ANF 6프리골드 연어+흰살생선",b:"ANF",a:["adult","senior"],s:["small","medium"],h:["general","skin"],d:["fishFocus"],t:["picky"],c:"연어와 흰살생선 단백질로 알러지를 줄이고 피부·피모를 윤기나게 가꿔줍니다. 입맛 까다로운 아이도 좋아하는 ANF 6free GOLD 레시피입니다."},
+  {n:"ANF 6프리골드 양고기+쌀",b:"ANF",a:["adult","senior"],s:["small","medium"],h:["general","digest"],d:["allergy"],t:[],c:"소화가 잘 되는 양고기와 쌀 조합으로 속 편안한 데일리 사료입니다. 알러지·민감성 아이에게 추천합니다."},
+  {n:"ANF 6프리골드 오리+고구마",b:"ANF",a:["adult","senior"],s:["small","medium"],h:["general","skin"],d:["fishFocus"],t:["picky"],c:"오리 단백질 특유의 풍미와 피부·피모 관리 효과를 함께 누릴 수 있는 ANF 6free GOLD 레시피입니다."},
+  {n:"ANF 6프리골드 양고기+연어",b:"ANF",a:["adult","senior"],s:["small","medium"],h:["general","skin"],d:["fishFocus"],t:["picky"],c:"양고기와 연어를 담은 레시피로 풍부한 오메가 지방산으로 피모 건강에 탁월합니다."},
+  {n:"나우 어덜트 스몰브리드",b:"나우",a:["adult","senior"],s:["small"],h:["general","skin","digest"],d:["allergy","chickenFree","grainFree","fishFocus"],t:["picky"],c:"칠면조·연어·오리 혼합 단백질로 알러지를 줄이고 소화 촉진과 피부·피모 건강을 동시에 챙기는 소형견 전용 그레인프리 사료입니다."},
+  {n:"나우 퍼피 스몰브리드",b:"나우",a:["puppy"],s:["small"],h:["general","skin","digest"],d:["grainFree","chickenFree","fishFocus"],t:["picky"],c:"어린 강아지의 성장에 필요한 영양을 풍부하게 담은 그레인프리 레시피입니다. 연어와 오리 단백질로 알러지를 줄이고 DHA도 함유합니다."},
+  {n:"내추럴발란스 채식",b:"내추럴발란스",a:["adult","senior"],s:["small","medium"],h:["digest"],d:["allergy","chickenFree","grainFree"],t:[],c:"채식 원료로만 이루어진 레시피로 단백질 알러지 반응이 있는 아이들에게 새로운 선택지입니다."},
+  {n:"내추럴발란스 연어+고구마",b:"내추럴발란스",a:["adult","senior"],s:["small","medium"],h:["general","skin","digest"],d:["allergy","chickenFree","grainFree","fishFocus"],t:[],c:"단일 원료 단백질(연어)로 알러지를 줄이고 소화 부담을 최소화하는 LID 레시피입니다. 피부·피모 개선에도 효과적입니다."},
+  {n:"스타터 독",b:"스타터",a:["adult","senior"],s:["small","medium"],h:["general","skin"],d:["fishFocus"],t:["picky"],c:"기본 영양을 충실히 담으면서 입맛 까다로운 아이도 잘 먹는 기호성 높은 생선 중심 사료입니다."},
+  {n:"스타터 치킨",b:"스타터",a:["adult","senior"],s:["small","medium"],h:["general"],d:[],t:["picky"],c:"안정적인 치킨 단백질로 구성된 데일리 사료입니다."},
+  {n:"닥터독 관절 생양고기",b:"닥터독",a:["adult"],s:["small","medium"],h:["joint"],d:["chickenFree"],t:["picky","active"],c:"슬개골 탈구 예방 및 관절 케어에 집중한 양고기 레시피입니다. 활동량 많은 아이에게 추천합니다."},
+  {n:"닥터독 피부피모 생양고기",b:"닥터독",a:["adult"],s:["small","medium"],h:["skin"],d:["chickenFree","fishFocus"],t:["picky"],c:"피부·피모 관리에 집중한 단일 원료 양고기 레시피입니다. 연어 오일과 오메가 지방산이 풍부합니다."},
+  {n:"그레코 클래식",b:"그레코",a:["adult"],s:["small","medium"],h:["general"],d:[],t:[],c:"균형 잡힌 기본 영양의 데일리 사료입니다."},
+  {n:"로얄캐닌 XSMALL 어덜트",b:"로얄캐닌",a:["adult","senior"],s:["small"],h:["general","digest"],d:[],t:["picky"],c:"초소형견의 작은 체구에 맞춘 맞춤 영양 사료입니다. 높은 기호성과 소화 건강 지원 설계로 까다로운 아이에게도 추천합니다."},
+  {n:"로얄캐닌 XSMALL 퍼피",b:"로얄캐닌",a:["puppy"],s:["small"],h:["general","digest"],d:[],t:["picky"],c:"초소형 강아지의 건강한 성장을 위한 레시피입니다. 소화 촉진 성분으로 어린 강아지의 부드러운 소화를 돕습니다."},
+  {n:"로얄캐닌 라이트웨이트",b:"로얄캐닌",a:["adult"],s:["small"],h:["weight","digest"],d:[],t:[],c:"체중 관리가 필요한 소형견을 위한 다이어트 사료입니다. 포만감은 유지하면서 칼로리는 줄인 설계입니다."},
+  {n:"로얄캐닌 미니 어덜트",b:"로얄캐닌",a:["adult","senior"],s:["small"],h:["general","skin","digest"],d:[],t:["picky"],c:"성인 소형견의 전반적인 건강을 위한 레시피입니다. 피부·피모와 소화 건강을 동시에 챙기고 기호성도 높습니다."},
+  {n:"로얄캐닌 미니인도어 시니어",b:"로얄캐닌",a:["senior"],s:["small"],h:["general","weight","digest"],d:[],t:["picky"],c:"실내에서 노년기를 보내는 소형견의 체중과 소화 건강을 위한 레시피입니다."},
+  {n:"로얄캐닌 미니인도어 어덜트",b:"로얄캐닌",a:["adult","senior"],s:["small"],h:["general","weight","digest"],d:[],t:["picky"],c:"실내 소형견의 체중 관리와 소화 건강을 함께 챙기는 레시피입니다."},
+  {n:"로얄캐닌 미니인도어 퍼피",b:"로얄캐닌",a:["puppy"],s:["small"],h:["general","digest"],d:[],t:["picky"],c:"실내 환경에서 자라는 어린 소형견의 성장에 필요한 필수 영양을 담은 레시피입니다."},
+  {n:"로얄캐닌 미니 견종별",b:"로얄캐닌",a:["adult","senior"],s:["small"],h:["general","skin"],d:[],t:["picky"],c:"말티즈, 말라뮤트, 푸들 등 견종별 체형과 피모 특성에 맞게 설계된 맞춤형 사료입니다."},
+  {n:"로얄캐닌 스타터",b:"로얄캐닌",a:["puppy"],s:["small","medium"],h:["digest"],d:[],t:["picky"],c:"처음 이유식을 시작하는 새끼 강아지를 위한 부드러운 레시피입니다."},
+  {n:"지위픽 6가지식이",b:"지위픽",a:["adult"],s:["small","medium"],h:["general","skin"],d:["grainFree","chickenFree","fishFocus"],t:["picky","active","highProtein"],c:"6가지 다양한 단백질 원료를 풍부하게 담은 고단백 그레인프리 레시피입니다. 피부 건강과 기호성을 함께 챙깁니다."},
+  {n:"지위픽 오리",b:"지위픽",a:["adult"],s:["small","medium"],h:["general"],d:["grainFree"],t:["picky","active","highProtein"],c:"오리 단백질 특유의 기호성과 그레인프리 구성으로 입맛 까다롭고 활동량 많은 아이에게 추천합니다."},
+  {n:"지위픽 사슴",b:"지위픽",a:["puppy"],s:["small","medium"],h:["general"],d:["grainFree"],t:["picky","active","highProtein"],c:"희소 단백질인 사슴고기로 알러지 걱정을 줄이면서도 높은 기호성을 자랑하는 에어드라이 레시피입니다."},
+  {n:"클로버 어덜트 라이프",b:"클로버",a:["adult"],s:["small","medium"],h:["general"],d:[],t:[],c:"가성비 좋은 기본 성인견 사료를 원하시는 분들께 적합한 제품입니다."},
+  {n:"클로버 인스팅트코트",b:"클로버",a:["adult"],s:["small","medium"],h:["digest"],d:["allergy","chickenFree","rareProtein"],t:[],c:"특정 단백질을 피하고 싶은 알러지 아이에게 추천하는 희소 단백질 중심 레시피입니다."},
+  {n:"포르자 스탄다드 퍼피",b:"포르자",a:["puppy"],s:["small","medium"],h:["general"],d:[],t:[],c:"성장하는 어린 강아지에게 필요한 기본 영양을 충실히 담은 레시피입니다."},
+  {n:"포르자 스탄다드 어덜트",b:"포르자",a:["adult","senior"],s:["small","medium"],h:["general"],d:[],t:[],c:"성인견의 일상적인 건강 유지를 위한 기본 레시피입니다."},
+  {n:"포르자 스탄다드 시니어",b:"포르자",a:["senior"],s:["small","medium"],h:["general","weight"],d:[],t:[],c:"노령견의 달라지는 영양 필요에 맞게 설계된 레시피로 체중 관리도 고려되었습니다."},
+  {n:"인스팅트 미니 알러지",b:"인스팅트",a:["adult"],s:["small"],h:["digest"],d:["allergy","chickenFree","rareProtein"],t:[],c:"소형견 알러지·민감성에 특화된 레시피입니다. 희소 단백질과 단일 탄수화물 원료로 알러지 반응을 최소화합니다."},
+  {n:"닥터 독 양고기 생식",b:"닥터",a:["adult"],s:["small","medium"],h:["general","joint"],d:["grainFree"],t:["picky","active","highProtein"],c:"양고기의 기호성과 관절 건강 지원 성분을 함께 담은 그레인프리 고단백 생식 사료입니다."},
+  {n:"닥터 독 사슴육 생식",b:"닥터",a:["adult"],s:["small","medium"],h:["joint"],d:["allergy","chickenFree","grainFree","rareProtein"],t:["picky","active","highProtein"],c:"희소 단백질인 사슴육을 활용한 알러지 친화적 레시피입니다. 그레인프리이며 관절 건강 지원 성분도 함유합니다."},
+  {n:"닥터 독 연어육 생식",b:"닥터",a:["adult"],s:["small","medium"],h:["general","joint"],d:["chickenFree","grainFree"],t:["picky","active","highProtein"],c:"연어 단백질로 오메가 지방산이 풍부하고 관절 건강을 지원하는 그레인프리 고단백 레시피입니다."},
+  {n:"닥터 독 양+사슴 생식",b:"닥터",a:["adult"],s:["small","medium"],h:["general","joint"],d:["allergy","chickenFree","grainFree"],t:["picky","active","highProtein"],c:"양고기와 사슴 혼합 생식 사료입니다. 풍부한 기호성과 관절 건강 케어를 동시에 원하는 아이에게 추천합니다."},
+  {n:"하림 그레인프리 크런치 어덜트",b:"하림",a:["adult","senior"],s:["small","medium"],h:["general"],d:["allergy","grainFree","fishFocus"],t:["picky"],c:"명태크런치와 연어 원료의 그레인프리 사료입니다. 닭고기·양고기·돼지고기 원료가 없어 알러지 아이에게도 적합합니다."},
+  {n:"하림 시배드후크",b:"하림",a:["adult"],s:["small","medium"],h:["general"],d:["fishFocus"],t:["picky"],c:"생선 단백질 중심의 부드러운 사료로 알러지 아이도 즐길 수 있습니다."},
+  {n:"하림 시배드후크 퍼피",b:"하림",a:["puppy"],s:["small","medium"],h:["general"],d:["fishFocus"],t:["picky"],c:"어린 강아지를 위한 생선 중심 레시피입니다. 처음부터 생선 사료에 익숙해지기 좋습니다."},
+  {n:"하림 라이브 DOG 피모",b:"하림",a:["adult"],s:["small","medium"],h:["skin"],d:[],t:[],c:"피부·피모를 집중 관리하는 기능성 사료입니다."},
+  {n:"하림 라이브 DOG 알뜰 체중",b:"하림",a:["adult"],s:["small","medium"],h:["weight"],d:[],t:[],c:"체중 조절이 필요한 성인견을 위한 다이어트 사료입니다."},
+  {n:"하림 라이브 DOG 쿵쿵관절",b:"하림",a:["adult"],s:["small","medium"],h:["joint"],d:[],t:["active"],c:"관절 건강 지원에 특화된 사료입니다. 활동량이 많은 아이의 관절 보호에 도움을 줍니다."},
+  {n:"뉴트리독 DOG HA",b:"뉴트리독",a:["adult"],s:["small","medium"],h:["digest"],d:["allergy"],t:[],c:"알러지·소화 문제로 고민인 아이에게 추천하는 가수분해 단백질 사료입니다. 소화 부담을 줄이고 알러지 반응 개선에 도움을 줍니다."},
+  {n:"화이트랩 라이트",b:"화이트랩",a:["adult","senior"],s:["small","medium"],h:["skin","tear","digest"],d:["allergy","grainFree","fishFocus"],t:["picky"],c:"눈물 자국, 피부·피모, 소화 개선에 특화된 그레인프리 생선 중심 사료입니다. 눈물 자국이 심하거나 피부 트러블이 있는 아이에게 추천합니다."},
+  {n:"기타 특수상품",b:"기타",a:["adult"],s:["small","medium"],h:[],d:[],t:["picky"],c:"입맛 까다롭거나 다양한 단백질 순환을 원하는 아이에게 추천드리는 특수 상품입니다. 매장 매니저와 상담해 주세요."}
+];
+const STEPS=[
+  {k:"age",q:"아이의 연령대는?",sub:"성장 단계에 따라 필요한 영양이 달라요",badge:"STEP 1 · 연령",cols:1,
+   opts:[{v:"puppy",i:"🐣",l:"퍼피",hint:"생후 ~ 1년 (소형견 기준)"},{v:"adult",i:"🐕",l:"어덜트",hint:"1세 ~ 7세"},{v:"senior",i:"🦴",l:"시니어",hint:"7세 이상"}]},
+  {k:"size",q:"아이의 체급을 알려주세요",sub:"알갱이 크기와 칼로리 설계가 달라요",badge:"STEP 2 · 체급",cols:2,
+   opts:[{v:"small",i:"🤏",l:"소형견",hint:"10kg 미만"},{v:"medium",i:"🐾",l:"중·대형견",hint:"10kg 이상"}]},
+  {k:"health",q:"가장 신경 쓰이는 건강 관리는?",sub:"해당하는 항목을 하나 골라주세요",badge:"STEP 3 · 건강관리",cols:2,
+   opts:[{v:"general",i:"💪",l:"일반 건강",hint:"전반적인 영양 관리"},{v:"weight",i:"⚖️",l:"체중 관리",hint:"다이어트·비만 예방"},{v:"skin",i:"✨",l:"피부·피모",hint:"털 윤기·피부 트러블"},{v:"tear",i:"💧",l:"눈물 자국",hint:"눈물 자국 개선"},{v:"joint",i:"🦵",l:"관절",hint:"슬개골·관절 건강"},{v:"digest",i:"🫁",l:"소화·장",hint:"소화 불량·예민한 장"}]},
+  {k:"diet",q:"특별히 피하거나 선호하는 원료?",sub:"알러지나 식이 제한이 있으면 알려주세요",badge:"STEP 4 · 원료·식이",cols:2,
+   opts:[{v:"none",i:"🍽️",l:"상관없음",hint:"특별한 제한 없음"},{v:"allergy",i:"🚫",l:"알러지·민감성",hint:"단일 원료 처방식 계열"},{v:"chickenFree",i:"🐔",l:"치킨 프리",hint:"닭고기 원료 제외"},{v:"grainFree",i:"🌾",l:"그레인프리",hint:"곡물 무첨가"},{v:"fishFocus",i:"🐟",l:"생선 중심",hint:"생선 단백질 선호"},{v:"rareProtein",i:"🦌",l:"희소 단백질",hint:"사슴·캥거루 등"}]},
+  {k:"trait",q:"아이의 급여 성향은?",sub:"생활 습관을 알려주시면 더 정확하게 추천해드려요",badge:"STEP 5 · 급여 성향",cols:2,
+   opts:[{v:"none",i:"😊",l:"무난함",hint:"특별한 특성 없음"},{v:"picky",i:"😤",l:"입맛 까다로움",hint:"기호성 높은 사료 필요"},{v:"active",i:"🏃",l:"활동량 많음",hint:"에너지 소모가 많은 아이"},{v:"highProtein",i:"💥",l:"고단백·고열량",hint:"근육량 유지·체력 보강"}]}
+];
+const HL={general:"일반 건강",weight:"체중 관리",skin:"피부·피모",tear:"눈물 자국",joint:"관절",digest:"소화·장"};
+const DL={allergy:"알러지·민감성",chickenFree:"치킨 프리",grainFree:"그레인프리",fishFocus:"생선 중심",rareProtein:"희소 단백질",none:"제한 없음"};
+const TL={picky:"입맛 까다로움",active:"활동량 많음",highProtein:"고단백·고열량",none:"무난함"};
+const AL={puppy:"퍼피",adult:"어덜트",senior:"시니어"};
+const SL={small:"소형견",medium:"중·대형견"};
+
+let step=0,sel={};
+const pf=document.getElementById("pf"),sl=document.getElementById("sl"),sc=document.getElementById("sc"),
+      dt=document.getElementById("dots"),mc=document.getElementById("mc"),sn=document.getElementById("sn");
+
+function initDots(){
+  dt.innerHTML="";
+  for(let i=0;i<STEPS.length;i++){
+    const d=document.createElement("div");
+    d.className="dot"; d.id="d"+i; dt.appendChild(d);
+  }
+}
+function upProg(){
+  if(step>=STEPS.length){
+    pf.style.width="100%"; sl.textContent="완료!"; sc.textContent="5 / 5";
+    for(let i=0;i<STEPS.length;i++) document.getElementById("d"+i).className="dot done";
+    return;
+  }
+  pf.style.width=((step/STEPS.length)*100)+"%";
+  sl.textContent=STEPS[step].badge; sc.textContent=step+" / "+STEPS.length;
+  for(let i=0;i<STEPS.length;i++){
+    const e=document.getElementById("d"+i);
+    if(i<step) e.className="dot done";
+    else if(i===step) e.className="dot active";
+    else e.className="dot";
+  }
+}
+function renderQ(){
+  const s=STEPS[step]; upProg();
+  const gc=s.cols===2?"og tc":"og";
+  const opts=s.opts.map(o=>`
+    <button class="ob" id="o${o.v}" onclick="pick('${s.k}','${o.v}')">
+      <span class="oi">${o.i}</span>
+      <span class="ot"><span class="ol">${o.l}</span><span class="oh">${o.hint}</span></span>
+      ${s.cols===1?"<span class='oa'>›</span>":""}
+    </button>`).join("");
+  mc.innerHTML=`<div class="sf"><div class="qh"><div class="qb">${s.badge}</div><div class="qt">${s.q}</div><div class="qs">${s.sub}</div></div><div class="${gc}">${opts}</div></div>`;
+}
+function pick(k,v){
+  sel[k]=v;
+  const btn=document.getElementById("o"+v);
+  if(btn){
+    btn.style.background="linear-gradient(135deg,#FF6B2B,#FF4500)";
+    btn.style.color="#fff"; btn.style.borderColor="#FF6B2B";
+    setTimeout(()=>{ step++; if(step>=STEPS.length) showRes(); else renderQ(); },200);
+  }
+}
+function calcRes(){
+  let c=P.filter(p=>p.a.includes(sel.age)&&p.s.includes(sel.size));
+  c.forEach(p=>{
+    p._sc=0;
+    if(p.h.includes(sel.health)) p._sc+=4;
+    if(sel.diet!=="none"&&p.d.includes(sel.diet)) p._sc+=3;
+    if(sel.trait!=="none"&&p.t.includes(sel.trait)) p._sc+=2;
+  });
+  c.sort((a,b)=>b._sc-a._sc);
+  return c.slice(0,3);
+}
+function showRes(){
+  upProg(); sn.style.display="none";
+  const res=calcRes();
+  const tags=[AL[sel.age],SL[sel.size],HL[sel.health],
+    sel.diet!=="none"?DL[sel.diet]:null,
+    sel.trait!=="none"?TL[sel.trait]:null].filter(Boolean);
+  const tHTML=tags.map(t=>`<span class="rtag">${t}</span>`).join("");
+  let cards="";
+  if(!res.length||res[0]._sc===0){
+    cards=`<div class="nr"><span class="nre">🤔</span><p>조건에 정확히 맞는 사료가 없습니다.<br/><strong>매장 매니저</strong>에게 문의하시면 더 다양한 옵션을 안내해 드립니다!</p></div>`;
+  } else {
+    const ri=["🥇","🥈","🥉"],rc=["r1","r2","r3"];
+    cards="<div class='pl2'>"+res.map((p,i)=>{
+      let bg="";
+      p.a.forEach(x=>{bg+=`<span class="badge ba">${AL[x]||x}</span>`;});
+      p.s.forEach(x=>{bg+=`<span class="badge bs">${SL[x]||x}</span>`;});
+      p.h.forEach(x=>{bg+=`<span class="badge bh">${HL[x]||x}</span>`;});
+      p.d.forEach(x=>{bg+=`<span class="badge bd">${DL[x]||x}</span>`;});
+      p.t.forEach(x=>{bg+=`<span class="badge bt">${TL[x]||x}</span>`;});
+      return `<div class="pc"><div class="prk">${ri[i]}</div><div class="pb">${p.b}</div><div class="pn">${p.n}</div><div class="pbg">${bg}</div><div class="pdesc">${p.c}</div></div>`;
+    }).join("")+"</div>";
+  }
+  mc.innerHTML=`<div class="sf"><div class="rh"><span class="rem">✨</span><div class="rt">딱 맞는 사료를 찾았어요!</div><div class="rs">아래 추천 사료를 매장에서 확인해 보세요</div><div class="rtg">${tHTML}</div></div>${cards}<div class="acts"><button class="rbtn" onclick="restart()">🔄 다시 테스트하기</button></div></div>`;
+}
+function restart(){
+  step=0; sel={}; sn.style.display=""; renderQ();
+}
+initDots(); renderQ();
+</script>
+</body>
+</html>

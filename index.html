@@ -30,7 +30,8 @@
     .hdr { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-l) 100%); padding: 32px 24px 28px; text-align: center; position: relative; overflow: hidden; }
     .hdr::before { content:''; position:absolute; top:-40px; right:-40px; width:160px; height:160px; border-radius:50%; background:rgba(255,214,0,.10); }
     .hdr::after  { content:''; position:absolute; bottom:-60px; left:-30px; width:200px; height:200px; border-radius:50%; background:rgba(255,214,0,.06); }
-    .hdr-em { font-size:3rem; display:block; margin-bottom:8px; filter:drop-shadow(0 4px 8px rgba(0,0,0,.3)); }
+    .hdr-em { display:block; margin-bottom:8px; }
+    .hdr-logo { height:90px; width:auto; filter:drop-shadow(0 4px 12px rgba(0,0,0,.35)); border-radius:12px; }
     .hdr h1 { font-size:1.4rem; font-weight:900; color:var(--yellow); letter-spacing:-.5px; position:relative; z-index:1; }
     .hdr p  { font-size:.82rem; color:rgba(255,255,255,.75); margin-top:6px; position:relative; z-index:1; }
 
@@ -160,7 +161,7 @@
 <body>
 <div class="wrap">
   <div class="hdr">
-    <span class="hdr-em">🐾</span>
+    <span class="hdr-em"><img src="logo.png" alt="개밥파는고양이 로고" class="hdr-logo" /></span>
     <h1>우리 아이 맞춤 사료 찾기</h1>
     <p>개밥파는고양이 수원고등점 전문 큐레이션</p>
   </div>
